@@ -1,10 +1,10 @@
-package com.terry.SubmarineHunter;
+package com.terry.EconomicSimulator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SubmarineHunterApplicationTests {
+class EconomicSimulatorTests {
 
 	@Test
 	void contextLoads() {
