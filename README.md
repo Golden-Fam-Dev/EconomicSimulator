@@ -3,9 +3,3 @@
 
 # EconomicSimulator
 Game to simulate an ecomomy
-=======
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/Golden-Fam-Dev/SubmarineHunter)
-
-# SubmarineHunter
-Sample project for tutorial
->>>>>>> dffdad9a69d0510eaa2de36c83f040f4c0c2f3a4
