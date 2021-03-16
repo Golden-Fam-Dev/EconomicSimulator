@@ -1,5 +1,9 @@
 package com.terry.economicsimulator.repository;
 
-public class CompanyRepository implements JpaRe {
+import com.terry.economicsimulator.model.company.Company;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CompanyRepository extends JpaRepository<Company, Integer> {
     
 }
