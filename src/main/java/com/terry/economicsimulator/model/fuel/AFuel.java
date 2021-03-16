@@ -1,12 +1,12 @@
-package com.terry.economicsimulator.model.resource;
+package com.terry.economicsimulator.model.fuel;
 
 import lombok.Getter;
 import lombok.NonNull;
 
-public abstract class AResource {
+public abstract class AFuel {
     @Getter
     @NonNull
-    private int amount;
+    private int cost;
     @Getter
     @NonNull
     private String name;
