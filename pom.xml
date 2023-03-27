@@ -1,62 +1,327 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.2.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.terry</groupId>
-	<artifactId>EconomicSimulator</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>EconomicSimulator</name>
-	<description>Demo project friends</description>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-	</properties>
+  <groupId>golden.family.developement</groupId>
+  <artifactId>EconomicSimulator</artifactId>
+  <version>0.0.1</version>
+  <packaging>jar</packaging>
 
-	<dependencies>
+  <name>Economic Simulator</name>
+  <description>API for Economic Simulator</description>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.0.4</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
 
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+  <properties>
+    <java.version>17</java.version>
+    <spring.version>3.0.4</spring.version>
+    <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
+    <org.projectlombok.version>1.18.26</org.projectlombok.version>
+    <jooq.version>3.18.0</jooq.version>
+    <tomcat.version>10.1.5</tomcat.version>
+    <snakeyaml.version>2.0</snakeyaml.version>
+  </properties>
 
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-	</dependencies>
+  <dependencies>
+    <!-- Spring Boot -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>6.0.0</version>
+      <scope>provided</scope>
+    </dependency>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+
+    <!-- Database -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jooq</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jooq</groupId>
+      <artifactId>jooq-codegen</artifactId>
+      <version>${jooq.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jooq</groupId>
+      <artifactId>jooq-meta</artifactId>
+      <version>${jooq.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
+
+    <!-- Testing -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20230227</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-launcher</artifactId>
+      <version>1.9.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.junit.vintage</groupId>
+          <artifactId>junit-vintage-engine</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- Helpers -->
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${org.mapstruct.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${org.projectlombok.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.yaml</groupId>
+      <artifactId>snakeyaml</artifactId>
+      <version>${snakeyaml.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jooq</groupId>
+        <artifactId>jooq-codegen-maven</artifactId>
+        <version>${jooq.version}</version>
+        <configuration>
+          <generator>
+            <database>
+              <name>org.jooq.meta.extensions.ddl.DDLDatabase</name>
+              <properties>
+
+                <!-- Specify the location of your SQL script.
+                                     You may use ant-style file matching, e.g. /path/**/to/*.sql
+
+                                     Where:
+                                     - ** matches any directory subtree
+                                     - * matches any number of characters in a directory / file name
+                                     - ? matches a single character in a directory / file name -->
+                <property>
+                  <key>scripts</key>
+                  <value>src/main/resources/schema-h2.sql</value>
+                </property>
+
+                <!-- The sort order of the scripts within a directory, where:
+
+                                     - semantic: sorts versions, e.g. v-3.10.0 is after v-3.9.0 (default)
+                                     - alphanumeric: sorts strings, e.g. v-3.10.0 is before v-3.9.0
+                                     - flyway: sorts files the same way as flyway does
+                                     - none: doesn't sort directory contents after fetching them from the directory -->
+                <property>
+                  <key>sort</key>
+                  <value>semantic</value>
+                </property>
+
+                <!-- The default name case for unquoted objects:
+
+                                     - as_is: unquoted object names are kept unquoted
+                                     - upper: unquoted object names are turned into upper case (most databases)
+                                     - lower: unquoted object names are turned into lower case (e.g. PostgreSQL) -->
+                <property>
+                  <key>defaultNameCase</key>
+                  <value>lower</value>
+                </property>
+              </properties>
+            </database>
+            <generate>
+              <javaTimeTypes>true</javaTimeTypes>
+              <pojos>true</pojos>
+            </generate>
+            <target>
+              <packageName>com.kohls.ls.api.db.generated</packageName>
+              <directory>${project.basedir}/target/generated-sources/jooq</directory>
+            </target>
+<!--            <strategy>-->
+<!--              &lt;!&ndash; Define JOOQ interface matching &ndash;&gt;-->
+<!--              <matchers>-->
+<!--                <tables>-->
+<!--                  <table>-->
+<!--                    <expression>LOCATION</expression>-->
+<!--                    <pojoImplements>com.kohls.ls.api.db.models.ILocationRecord</pojoImplements>-->
+<!--                  </table>-->
+<!--                  <table>-->
+<!--                    <expression>DISTRICT</expression>-->
+<!--                    <pojoImplements>com.kohls.ls.api.db.models.IDistrictRecord</pojoImplements>-->
+<!--                  </table>-->
+<!--                  <table>-->
+<!--                    <expression>TERRITORY</expression>-->
+<!--                    <pojoImplements>com.kohls.ls.api.db.models.ITerritoryRecord</pojoImplements>-->
+<!--                  </table>-->
+<!--                  <table>-->
+<!--                    <expression>TELEPHONE</expression>-->
+<!--                    <pojoImplements>com.kohls.ls.api.db.models.ITelephoneRecord</pojoImplements>-->
+<!--                  </table>-->
+<!--                  <table>-->
+<!--                    <expression>HOURS_OF_OPERATION</expression>-->
+<!--                    <pojoImplements>com.kohls.ls.api.db.models.IHoursOfOperationRecord</pojoImplements>-->
+<!--                  </table>-->
+<!--                  <table>-->
+<!--                    <expression>ADDRESS</expression>-->
+<!--                    <pojoImplements>com.kohls.ls.api.db.models.IAddressRecord</pojoImplements>-->
+<!--                  </table>-->
+<!--                  <table>-->
+<!--                    <expression>ATTRIBUTE</expression>-->
+<!--                    <pojoImplements>com.kohls.ls.api.db.models.IAttributeRecord</pojoImplements>-->
+<!--                  </table>-->
+<!--                  <table>-->
+<!--                    <expression>LOCATION_ATTRIBUTE_VALUES</expression>-->
+<!--                    <pojoImplements>com.kohls.ls.api.db.models.ILocationAttributeValuesRecord</pojoImplements>-->
+<!--                  </table>-->
+<!--                  <table>-->
+<!--                    <expression>RELATED_LOCATION</expression>-->
+<!--                    <pojoImplements>com.kohls.ls.api.db.models.IRelatedLocationRecord</pojoImplements>-->
+<!--                  </table>-->
+<!--                  <table>-->
+<!--                    <expression>LS_GROUP</expression>-->
+<!--                    <pojoImplements>com.kohls.ls.api.db.models.IGroupRecord</pojoImplements>-->
+<!--                  </table>-->
+<!--                  <table>-->
+<!--                    <expression>LS_GROUP_TYPE</expression>-->
+<!--                    <pojoImplements>com.kohls.ls.api.db.models.IGroupTypeRecord</pojoImplements>-->
+<!--                  </table>-->
+<!--                  <table>-->
+<!--                    <expression>LS_GROUP_MEMBERSHIP</expression>-->
+<!--                    <pojoImplements>com.kohls.ls.api.db.models.IGroupMembershipRecord</pojoImplements>-->
+<!--                  </table>-->
+<!--                </tables>-->
+<!--              </matchers>-->
+<!--            </strategy>-->
+          </generator>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-meta-extensions</artifactId>
+            <version>${jooq.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>${project.basedir}/target/generated-sources/jooq</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.mapstruct</groupId>
+              <artifactId>mapstruct-processor</artifactId>
+              <version>${org.mapstruct.version}</version>
+            </path>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${org.projectlombok.version}</version>
+            </path>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok-mapstruct-binding</artifactId>
+              <version>0.2.0</version>
+            </path>
+            <path>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-configuration-processor</artifactId>
+              <version>${spring.version}</version>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
