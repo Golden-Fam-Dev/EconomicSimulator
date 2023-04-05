@@ -14,13 +14,13 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.0.4</version>
+    <version>3.0.5</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
   <properties>
     <java.version>17</java.version>
-    <spring.version>3.0.4</spring.version>
+    <spring.version>3.0.5</spring.version>
     <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
     <org.projectlombok.version>1.18.26</org.projectlombok.version>
     <jooq.version>3.18.0</jooq.version>
@@ -48,6 +48,20 @@
       <artifactId>jakarta.servlet-api</artifactId>
       <version>6.0.0</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-graphql</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webflux</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.graphql</groupId>
+      <artifactId>spring-graphql-test</artifactId>
+      <scope>test</scope>
     </dependency>
 
 
@@ -104,12 +118,6 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.junit.vintage</groupId>
-          <artifactId>junit-vintage-engine</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
 
     <!-- Helpers -->
@@ -182,64 +190,36 @@
               <pojos>true</pojos>
             </generate>
             <target>
-              <packageName>com.kohls.ls.api.db.generated</packageName>
+              <packageName>com.terry.economicsimulator.db.generated</packageName>
               <directory>${project.basedir}/target/generated-sources/jooq</directory>
             </target>
-<!--            <strategy>-->
-<!--              &lt;!&ndash; Define JOOQ interface matching &ndash;&gt;-->
-<!--              <matchers>-->
-<!--                <tables>-->
-<!--                  <table>-->
-<!--                    <expression>LOCATION</expression>-->
-<!--                    <pojoImplements>com.kohls.ls.api.db.models.ILocationRecord</pojoImplements>-->
-<!--                  </table>-->
-<!--                  <table>-->
-<!--                    <expression>DISTRICT</expression>-->
-<!--                    <pojoImplements>com.kohls.ls.api.db.models.IDistrictRecord</pojoImplements>-->
-<!--                  </table>-->
-<!--                  <table>-->
-<!--                    <expression>TERRITORY</expression>-->
-<!--                    <pojoImplements>com.kohls.ls.api.db.models.ITerritoryRecord</pojoImplements>-->
-<!--                  </table>-->
-<!--                  <table>-->
-<!--                    <expression>TELEPHONE</expression>-->
-<!--                    <pojoImplements>com.kohls.ls.api.db.models.ITelephoneRecord</pojoImplements>-->
-<!--                  </table>-->
-<!--                  <table>-->
-<!--                    <expression>HOURS_OF_OPERATION</expression>-->
-<!--                    <pojoImplements>com.kohls.ls.api.db.models.IHoursOfOperationRecord</pojoImplements>-->
-<!--                  </table>-->
-<!--                  <table>-->
-<!--                    <expression>ADDRESS</expression>-->
-<!--                    <pojoImplements>com.kohls.ls.api.db.models.IAddressRecord</pojoImplements>-->
-<!--                  </table>-->
-<!--                  <table>-->
-<!--                    <expression>ATTRIBUTE</expression>-->
-<!--                    <pojoImplements>com.kohls.ls.api.db.models.IAttributeRecord</pojoImplements>-->
-<!--                  </table>-->
-<!--                  <table>-->
-<!--                    <expression>LOCATION_ATTRIBUTE_VALUES</expression>-->
-<!--                    <pojoImplements>com.kohls.ls.api.db.models.ILocationAttributeValuesRecord</pojoImplements>-->
-<!--                  </table>-->
-<!--                  <table>-->
-<!--                    <expression>RELATED_LOCATION</expression>-->
-<!--                    <pojoImplements>com.kohls.ls.api.db.models.IRelatedLocationRecord</pojoImplements>-->
-<!--                  </table>-->
-<!--                  <table>-->
-<!--                    <expression>LS_GROUP</expression>-->
-<!--                    <pojoImplements>com.kohls.ls.api.db.models.IGroupRecord</pojoImplements>-->
-<!--                  </table>-->
-<!--                  <table>-->
-<!--                    <expression>LS_GROUP_TYPE</expression>-->
-<!--                    <pojoImplements>com.kohls.ls.api.db.models.IGroupTypeRecord</pojoImplements>-->
-<!--                  </table>-->
-<!--                  <table>-->
-<!--                    <expression>LS_GROUP_MEMBERSHIP</expression>-->
-<!--                    <pojoImplements>com.kohls.ls.api.db.models.IGroupMembershipRecord</pojoImplements>-->
-<!--                  </table>-->
-<!--                </tables>-->
-<!--              </matchers>-->
-<!--            </strategy>-->
+            <strategy>
+              <!-- Define JOOQ interface matching -->
+              <matchers>
+                <tables>
+                  <table>
+                    <expression>FUNCTIONAL_INDUSTRY</expression>
+                    <pojoImplements>com.terry.economicsimulator.db.models.IFunctionalIndustry</pojoImplements>
+                  </table>
+                  <table>
+                    <expression>RESOURCE</expression>
+                    <pojoImplements>com.terry.economicsimulator.db.models.IResource</pojoImplements>
+                  </table>
+                  <table>
+                    <expression>PRODUCTION_INDUSTRY</expression>
+                    <pojoImplements>com.terry.economicsimulator.db.models.IProductionIndustry</pojoImplements>
+                  </table>
+                  <table>
+                    <expression>CONSUMPTION_INDUSTRY</expression>
+                    <pojoImplements>com.terry.economicsimulator.db.models.IConsumptionIndustry</pojoImplements>
+                  </table>
+                  <table>
+                    <expression>INDUSTRIAL_INDUSTRY</expression>
+                    <pojoImplements>com.terry.economicsimulator.db.models.IIndustrialIndustry</pojoImplements>
+                  </table>
+                </tables>
+              </matchers>
+            </strategy>
           </generator>
         </configuration>
         <executions>
