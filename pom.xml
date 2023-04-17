@@ -63,6 +63,11 @@
       <artifactId>spring-graphql-test</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.graphql-java</groupId>
+      <artifactId>graphql-java-extended-scalars</artifactId>
+      <version>20.1</version>
+    </dependency>
 
 
     <!-- Database -->

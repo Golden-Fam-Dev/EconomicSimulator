@@ -1,0 +1,525 @@
+{
+  "errors": [
+    {
+      "message": "Resource not present for given filter",
+      "locations": [],
+      "path": [
+        "allResourcesLessThan1800"
+      ],
+      "extensions": {
+        "errorType": "NOT_FOUND"
+      }
+    }
+  ],
+  "data": {
+    "allResources": [
+      {
+        "resourceId": "1",
+        "resourceName": "Alcohol",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 100,
+        "deliveryTimeSensitivity": 2,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "2",
+        "resourceName": "Aluminum",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1910,
+        "medianPrice": 85,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "3",
+        "resourceName": "Ammunition",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1848,
+        "medianPrice": 160,
+        "deliveryTimeSensitivity": 2,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "4",
+        "resourceName": "Automobiles",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1900,
+        "medianPrice": 200,
+        "deliveryTimeSensitivity": 3,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "5",
+        "resourceName": "Bauxite",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1910,
+        "medianPrice": 30,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "6",
+        "resourceName": "Cheese",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1880,
+        "medianPrice": 235,
+        "deliveryTimeSensitivity": 5,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "7",
+        "resourceName": "Chemicals",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1905,
+        "medianPrice": 30,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "8",
+        "resourceName": "Clothing",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 95,
+        "deliveryTimeSensitivity": 3,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "9",
+        "resourceName": "Coal",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 30,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "10",
+        "resourceName": "Coffee",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 45,
+        "deliveryTimeSensitivity": 2,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "11",
+        "resourceName": "Corn",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 25,
+        "deliveryTimeSensitivity": 3,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "12",
+        "resourceName": "Cotton",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 30,
+        "deliveryTimeSensitivity": 2,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "13",
+        "resourceName": "Diesel",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1890,
+        "medianPrice": 100,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "14",
+        "resourceName": "Fertilizer",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1905,
+        "medianPrice": 80,
+        "deliveryTimeSensitivity": 2,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "15",
+        "resourceName": "Furniture",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1880,
+        "medianPrice": 220,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "16",
+        "resourceName": "Goods",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 170,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "17",
+        "resourceName": "Grain",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 30,
+        "deliveryTimeSensitivity": 3,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "18",
+        "resourceName": "Iron",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 30,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "19",
+        "resourceName": "Livestock",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 90,
+        "deliveryTimeSensitivity": 8,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "20",
+        "resourceName": "Logs",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 30,
+        "deliveryTimeSensitivity": 2,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "21",
+        "resourceName": "Lumber",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 85,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "22",
+        "resourceName": "Mail",
+        "resourceType": "EXPRESS",
+        "yearAvailable": 1800,
+        "medianPrice": 1,
+        "deliveryTimeSensitivity": 10,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "23",
+        "resourceName": "Meat",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 195,
+        "deliveryTimeSensitivity": 5,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "24",
+        "resourceName": "Milk",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 110,
+        "deliveryTimeSensitivity": 10,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "25",
+        "resourceName": "Oil",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1860,
+        "medianPrice": 40,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "26",
+        "resourceName": "Paper",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 85,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "27",
+        "resourceName": "Passengers",
+        "resourceType": "EXPRESS",
+        "yearAvailable": 1800,
+        "medianPrice": 20,
+        "deliveryTimeSensitivity": 9,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "28",
+        "resourceName": "Plastic",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1935,
+        "medianPrice": 85,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "29",
+        "resourceName": "Produce",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 45,
+        "deliveryTimeSensitivity": 8,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "30",
+        "resourceName": "Pulpwood",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 30,
+        "deliveryTimeSensitivity": 2,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "31",
+        "resourceName": "Rice",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 30,
+        "deliveryTimeSensitivity": 2,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "32",
+        "resourceName": "Rubber",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1900,
+        "medianPrice": 30,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "33",
+        "resourceName": "Steel",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1856,
+        "medianPrice": 85,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "34",
+        "resourceName": "Sugar",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 35,
+        "deliveryTimeSensitivity": 2,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "35",
+        "resourceName": "Tires",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1900,
+        "medianPrice": 85,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "36",
+        "resourceName": "Toys",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1880,
+        "medianPrice": 175,
+        "deliveryTimeSensitivity": 3,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "37",
+        "resourceName": "Troops",
+        "resourceType": "EXPRESS",
+        "yearAvailable": 1848,
+        "medianPrice": 10,
+        "deliveryTimeSensitivity": 7,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "38",
+        "resourceName": "Uranium",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1950,
+        "medianPrice": 200,
+        "deliveryTimeSensitivity": 3,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "39",
+        "resourceName": "Waste (Recyclables)",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1990,
+        "medianPrice": 40,
+        "deliveryTimeSensitivity": 6,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "40",
+        "resourceName": "Weapons",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1848,
+        "medianPrice": 235,
+        "deliveryTimeSensitivity": 2,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "41",
+        "resourceName": "Wool",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 30,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "42",
+        "resourceName": "Food",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 0,
+        "deliveryTimeSensitivity": 0,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "43",
+        "resourceName": "Gravel",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 0,
+        "deliveryTimeSensitivity": 0,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "44",
+        "resourceName": "Cement",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 0,
+        "deliveryTimeSensitivity": 0,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "100",
+        "resourceName": "Metra-Cargo",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1800,
+        "medianPrice": 10,
+        "deliveryTimeSensitivity": 0,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "101",
+        "resourceName": "All-Available",
+        "resourceType": "BOTH",
+        "yearAvailable": 1800,
+        "medianPrice": 10,
+        "deliveryTimeSensitivity": 0,
+        "metraCargo": false
+      }
+    ],
+    "allFreightBefore1900": [
+      {
+        "resourceId": "2",
+        "resourceName": "Aluminum",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1910,
+        "medianPrice": 85,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "4",
+        "resourceName": "Automobiles",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1900,
+        "medianPrice": 200,
+        "deliveryTimeSensitivity": 3,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "5",
+        "resourceName": "Bauxite",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1910,
+        "medianPrice": 30,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "7",
+        "resourceName": "Chemicals",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1905,
+        "medianPrice": 30,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "14",
+        "resourceName": "Fertilizer",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1905,
+        "medianPrice": 80,
+        "deliveryTimeSensitivity": 2,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "28",
+        "resourceName": "Plastic",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1935,
+        "medianPrice": 85,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "32",
+        "resourceName": "Rubber",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1900,
+        "medianPrice": 30,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "35",
+        "resourceName": "Tires",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1900,
+        "medianPrice": 85,
+        "deliveryTimeSensitivity": 1,
+        "metraCargo": true
+      },
+      {
+        "resourceId": "38",
+        "resourceName": "Uranium",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1950,
+        "medianPrice": 200,
+        "deliveryTimeSensitivity": 3,
+        "metraCargo": false
+      },
+      {
+        "resourceId": "39",
+        "resourceName": "Waste (Recyclables)",
+        "resourceType": "FREIGHT",
+        "yearAvailable": 1990,
+        "medianPrice": 40,
+        "deliveryTimeSensitivity": 6,
+        "metraCargo": false
+      }
+    ],
+    "allResourcesLessThan1800": []
+  }
+}

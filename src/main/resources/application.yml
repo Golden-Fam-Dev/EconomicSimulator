@@ -1,0 +1,47 @@
+# Global Properties
+spring:
+  profiles:
+    active:
+      - local
+  main:
+    banner-mode: off
+  graphql:
+    schema:
+      locations: classpath:schema/**/
+
+logging:
+  level:
+    root: info
+
+management:
+  health:
+    readinessstate:
+      enabled: true
+    livenessstate:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      group:
+        readiness:
+          include: readinessState
+        liveness:
+          include: livenessState,diskSpace,ping,system,thread
+      show-details: always
+      show-components: always
+    info:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+info:
+  version: @project.version@
+  application:
+    name: @project.artifactId@
+    description: A GraphQL API for Location Services
+    author:
+      name: Golden Family
+      email: jennyandterry@gmail.com

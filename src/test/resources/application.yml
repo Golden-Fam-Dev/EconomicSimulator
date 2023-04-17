@@ -1,0 +1,21 @@
+# Test Properties
+spring:
+  profiles:
+    active:
+      - test
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MYSQL;DATABASE_TO_UPPER=false
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  sql:
+    init:
+      data-locations:
+      platform: h2
+  graphql:
+    schema:
+      locations: classpath:schema/**/
+
+logging:
+  level:
+    root: info

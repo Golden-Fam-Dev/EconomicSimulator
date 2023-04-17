@@ -24,7 +24,7 @@ public class ResourceDataFetcher {
 	}
 
 	@QueryMapping
-	public CompletableFuture<DataFetcherResult<List<Resource>>> resourceQuery(@Argument("filter") Optional<ResourceFilter> filter, DataFetchingEnvironment dfe) {
+	public CompletableFuture<DataFetcherResult<List<Resource>>> resources(@Argument("filter") Optional<ResourceFilter> filter, DataFetchingEnvironment dfe) {
 		return dataFetcherHelper.handle(
 				() -> resourceDataFetcherInternal.resourceQuery(filter.orElse(ResourceFilter.builder().build()), dfe),
 				dfe,

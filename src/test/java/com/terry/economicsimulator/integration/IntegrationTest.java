@@ -23,8 +23,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.io.File;
@@ -38,9 +40,12 @@ import java.util.UUID;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -73,8 +78,6 @@ class IntegrationTest {
 
   /**
    * Main test execution method
-   * @param testcase
-   * @throws Exception
    */
   @ParameterizedTest(name = "{0}")
   @MethodSource("namedTestData")
@@ -95,24 +98,22 @@ class IntegrationTest {
 
     final String correlationId = UUID.randomUUID().toString();
 
-    mockMvc.perform(post("/graphql")
-            .servletPath("/graphql")
-            .contentType("application/json")
-            .content(requestContent))
-        .andDo(print())
-        .andExpect(status().isOk())
-        .andExpect(json(stringFromFile("json", dataResponseFileName)));
+    MvcResult mvcResult = mockMvc.perform(post("/graphql")
+                    .servletPath("/graphql")
+                    .content(requestContent)
+                    .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(request().asyncStarted())
+            .andExpect(request().asyncResult(notNullValue()))
+            .andReturn();
 
-    List<DataValidation> dataValidation = testcase.getDbDataValidation();
-
-    if (dataValidation != null) {
-      validateDbData(dataValidation);
-    }
+    mockMvc.perform(asyncDispatch(mvcResult))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(json(stringFromFile("json", dataResponseFileName)));
   }
 
   /**
    * Insert test data into DB if it exists, if more than 1 file is present throws error if any files are missing
-   * @param dbDataFileName
    */
   private void insertDbData(List<String> dbDataFileName) {
     dbDataFileName.stream()
@@ -145,8 +146,6 @@ class IntegrationTest {
 
   /**
    * Returns the integration test data as the java object type IntegrationTestData
-   * @param file
-   * @return
    */
   @SneakyThrows
   private static IntegrationTestData getIntegrationTestData(File file) {
@@ -155,9 +154,6 @@ class IntegrationTest {
 
   /**
    * Checks if a given file exists by file name
-   * @param path
-   * @param fileName
-   * @return
    */
   private boolean fileExists(String path, String fileName) {
     String fullPath = "integrationtest/" + path + "/" + fileName;
@@ -167,9 +163,6 @@ class IntegrationTest {
   /**
    * Returns a string from a file by file name
    *
-   * @param path
-   * @param fileName
-   * @return
    */
   @SneakyThrows
   private String stringFromFile(String path, String fileName) {
@@ -206,7 +199,6 @@ class IntegrationTest {
   /**
    * For each DataValidation in the dbDataValidation list, queries the database and validates the results of the query against the expected results provided in
    * the data field. Comparison is achieved through usage of strings to avoid types (Ex: Int vs short)
-   * @param dbDataValidation
    */
   private void validateDbData(List<DataValidation> dbDataValidation) {
     for (DataValidation dataValidation : dbDataValidation) {

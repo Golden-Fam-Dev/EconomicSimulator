@@ -1,13 +1,10 @@
 package com.terry.economicsimulator.exception;
 
-import graphql.ErrorType;
 import graphql.GraphQLError;
-import graphql.GraphqlErrorBuilder;
 import graphql.execution.DataFetcherExceptionHandler;
 import graphql.execution.DataFetcherExceptionHandlerParameters;
 import graphql.execution.DataFetcherExceptionHandlerResult;
-import graphql.execution.SimpleDataFetcherExceptionHandler;
-import graphql.schema.DataFetchingEnvironment;
+import graphql.execution.ResultPath;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.CompletableFuture;
@@ -15,7 +12,7 @@ import java.util.concurrent.CompletionException;
 
 @Component
 public class ESDataFetchingExceptionHandler implements DataFetcherExceptionHandler {
-	private final DataFetcherExceptionHandler defaultHandler = new SimpleDataFetcherExceptionHandler();
+	private final DataFetcherExceptionHandler defaultHandler = new DefaultDataFetcherExceptionHandler();
 
 	@Override
 	public CompletableFuture<DataFetcherExceptionHandlerResult> handleException(DataFetcherExceptionHandlerParameters handlerParameters) {
@@ -24,17 +21,13 @@ public class ESDataFetchingExceptionHandler implements DataFetcherExceptionHandl
 		if (exception instanceof CompletionException) {
 			underlyingException = exception.getCause();
 		}
-		DataFetchingEnvironment dfe = handlerParameters.getDataFetchingEnvironment();
 
-		if (underlyingException instanceof InputValidationException) {
-			GraphQLError graphqlError = GraphqlErrorBuilder.newError(dfe)
-					.errorType(ErrorType.ValidationError)
-					.message(underlyingException.getMessage())
-					.path(handlerParameters.getPath())
-					.build();
-			return convertErrorHandlerErrorTypeField(DataFetcherExceptionHandlerResult.newResult()
-					.error(graphqlError)
-					.build());
+		if (underlyingException instanceof EntityNotFoundException) {
+			DataFetcherExceptionHandlerResult exceptionHandlerResult = createExceptionHandlerResult(TypedGraphQLError.newNotFoundBuilder(), underlyingException.getMessage(), handlerParameters.getPath());
+			return CompletableFuture.completedFuture(exceptionHandlerResult);
+		} else if (underlyingException instanceof InputValidationException) {
+			DataFetcherExceptionHandlerResult exceptionHandlerResult = createExceptionHandlerResult(TypedGraphQLError.newBadRequestBuilder(), underlyingException.getMessage(), handlerParameters.getPath());
+			return CompletableFuture.completedFuture(exceptionHandlerResult);
 		} else {
 			DataFetcherExceptionHandlerParameters paramsWithUnderlyingException = DataFetcherExceptionHandlerParameters.newExceptionParameters()
 					.dataFetchingEnvironment(handlerParameters.getDataFetchingEnvironment())
@@ -44,17 +37,13 @@ public class ESDataFetchingExceptionHandler implements DataFetcherExceptionHandl
 		}
 	}
 
-	public CompletableFuture<DataFetcherExceptionHandlerResult> convertErrorHandlerErrorTypeField(DataFetcherExceptionHandlerResult oldResult) {
-		String errorType = "errorType";
-
-		oldResult.getErrors()
-				.forEach(error -> {
-					if (error.getExtensions() != null && error.getExtensions().get(errorType) != null) {
-						error.getExtensions().put("classification", error.getExtensions().get(errorType));
-						error.getExtensions().remove(errorType);
-					}
-				});
-
-		return CompletableFuture.completedFuture(oldResult);
+	private DataFetcherExceptionHandlerResult createExceptionHandlerResult(TypedGraphQLError.Builder tgBuilder, String message, ResultPath path) {
+		GraphQLError graphqlError = tgBuilder
+				.message(message)
+				.path(path)
+				.build();
+		return DataFetcherExceptionHandlerResult.newResult()
+				.error(graphqlError)
+				.build();
 	}
 }

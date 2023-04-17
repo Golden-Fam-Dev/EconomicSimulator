@@ -1,0 +1,9 @@
+{
+  "testCase": "Query for resource details",
+  "acceptanceCriteria": "Querying resource data -> Gets resource data back",
+  "dbDataFileName": [
+    "1-resource.sql"
+  ],
+  "request": "query-resourceData.graphql",
+  "response": "query-resourceData.json"
+}

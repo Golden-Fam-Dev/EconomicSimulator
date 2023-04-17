@@ -69,7 +69,7 @@ public class ResourceDataFetcherTest {
 					.source(Resource.builder().build()).build();
 
 			CompletableFuture<DataFetcherResult<List<Resource>>> resourceResultFuture =
-					resourceDataFetcher.resourceQuery(Optional.empty(), dfeWithSource);
+					resourceDataFetcher.resources(Optional.empty(), dfeWithSource);
 			resourceDataLoader.dispatchAndJoin();
 
 			assertNotNull(resourceResultFuture);
@@ -89,7 +89,7 @@ public class ResourceDataFetcherTest {
 		void resourceIdNotExists() {
 			ResourceFilter filter = ResourceFilter.builder().resourceId(IDExpression.builder().eq("-1").build()).build();
 
-			CompletableFuture<DataFetcherResult<List<Resource>>> resourcesResultFuture = resourceDataFetcher.resourceQuery(Optional.of(filter), dfe);
+			CompletableFuture<DataFetcherResult<List<Resource>>> resourcesResultFuture = resourceDataFetcher.resources(Optional.of(filter), dfe);
 			resourceDataLoader.dispatchAndJoin();
 
 			assertNotNull(resourcesResultFuture);
@@ -112,7 +112,7 @@ public class ResourceDataFetcherTest {
 					.resourceName(StringExpression.builder().eq("Apples").build())
 					.build();
 
-			CompletableFuture<DataFetcherResult<List<Resource>>> resourcesResultFuture = resourceDataFetcher.resourceQuery(Optional.of(resourceFilter), dfe);
+			CompletableFuture<DataFetcherResult<List<Resource>>> resourcesResultFuture = resourceDataFetcher.resources(Optional.of(resourceFilter), dfe);
 			resourceDataLoader.dispatchAndJoin();
 
 			assertNotNull(resourcesResultFuture);
@@ -132,7 +132,7 @@ public class ResourceDataFetcherTest {
 					.resourceId(IDExpression.builder().in(List.of("0", "1")).build())
 					.build();
 
-			CompletableFuture<DataFetcherResult<List<Resource>>> resourcesResultFuture = resourceDataFetcher.resourceQuery(Optional.of(resourceFilter), dfe);
+			CompletableFuture<DataFetcherResult<List<Resource>>> resourcesResultFuture = resourceDataFetcher.resources(Optional.of(resourceFilter), dfe);
 			resourceDataLoader.dispatchAndJoin();
 
 			assertNotNull(resourcesResultFuture);

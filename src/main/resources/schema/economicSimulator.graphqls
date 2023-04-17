@@ -1,0 +1,227 @@
+scalar Date
+scalar DateTime
+scalar Time
+scalar LocalTime
+scalar BigDecimal
+scalar Short
+
+"""
+Available Queries for Locations Service
+"""
+type Query {
+    """
+    Get specific resources by an array of ids.  If ids is not present, will retrieve all specific resources.
+
+    Example:
+    `resources {...}` for all resources
+    `resources(filter: {resourceType: {eq: FREIGHT}})' for all resources that are of type FREIGHT
+    """
+    resources(filter: ResourceFilter): [Resource!]!
+}
+
+type Resource {
+    "Unique ID for the resource"
+    resourceId: ID!
+    "Resource name"
+    resourceName: String!
+    "Type of resource"
+    resourceType: ResourceType!
+    "Year resource available"
+    yearAvailable: Short!
+    "Median resource price"
+    medianPrice: Int!
+    "Sensitivity resource is to delivery time"
+    deliveryTimeSensitivity: Int!
+    "Meta cargo is resource considered to be both express and frieght so can be used as the best of each.  Is this resource meta cargo?"
+    metraCargo: Boolean!
+}
+
+"""
+LocationType enums
+"""
+enum ResourceType {
+    FREIGHT,
+    EXPRESS,
+    BOTH
+}
+
+input ResourceFilter {
+    "IDExpression to filter on resourceId"
+    resourceId: IDExpression
+    "StringExpression to filter on resourceName"
+    resourceName: StringExpression
+    "ResourceTypeExpression to filter on resourceType"
+    resourceType: ResourceTypeExpression
+    "ShortExpression to filter on yearAvailable"
+    yearAvailable: ShortExpression
+    "IntExpression to filter on medianPrice"
+    medianPrice: IntExpression
+    "IntExpression to filter on deliveryTimeSensitivity"
+    deliveryTimeSensitivity: IntExpression
+    "BooleanExpression to filter on metraCargo"
+    metraCargo: BooleanExpression
+}
+
+"Expression which can be applied to the ID datatype"
+input IDExpression {
+    "Equals condition"
+    eq: ID
+    "Not equals condition"
+    ne: ID
+    "Condition which checks if the ID is in the provided array"
+    in: [ID!]
+    "Condition which checks if the ID is not in the provided array"
+    notIn: [ID!]
+}
+
+"Expression which can be applied to the BigDecimal datatype"
+input BigDecimalExpression {
+    "Equals condition"
+    eq: BigDecimal
+    "Not equals condition"
+    ne: BigDecimal
+    "Less than condition"
+    lt: BigDecimal
+    "Less than or equals condition"
+    lte: BigDecimal
+    "Greater than condition"
+    gt: BigDecimal
+    "Greater than or equals condition"
+    gte: BigDecimal
+    "Condition which checks if the int is in the provided array"
+    in: [BigDecimal!]
+    "Condition which checks if the int is not in the provided array"
+    notIn: [BigDecimal!]
+}
+
+"Expression which can be applied to the Boolean datatype"
+input BooleanExpression {
+    "Equals condition"
+    eq: Boolean
+    "Not equals condition"
+    ne: Boolean
+}
+
+"Expression which can be applied to the String datatype"
+input StringExpression {
+    "Equals condition"
+    eq: String
+    "Not equals condition"
+    ne: String
+    "Condition which checks of the string contains the provided string"
+    contains: String
+}
+
+input ShortExpression {
+    "Equals condition"
+    eq: Short
+    "Not equals condition"
+    ne: Short
+    "Less than condition"
+    lt: Short
+    "Less than or equals condition"
+    lte: Short
+    "Greater than condition"
+    gt: Short
+    "Greater than or equals condition"
+    gte: Short
+    "Condition which checks if the int is in the provided array"
+    in: [Short!]
+    "Condition which checks if the int is not in the provided array"
+    notIn: [Short!]
+}
+
+input IntExpression {
+    "Equals condition"
+    eq: Int
+    "Not equals condition"
+    ne: Int
+    "Less than condition"
+    lt: Int
+    "Less than or equals condition"
+    lte: Int
+    "Greater than condition"
+    gt: Int
+    "Greater than or equals condition"
+    gte: Int
+    "Condition which checks if the int is in the provided array"
+    in: [Int!]
+    "Condition which checks if the int is not in the provided array"
+    notIn: [Int!]
+}
+
+"Expression which can be applied to the LocalTime datatype"
+input LocalTimeExpression {
+    "Equals condition"
+    eq: LocalTime
+    "Not equals condition"
+    ne: LocalTime
+    "Less than condition"
+    lt: LocalTime
+    "Less than or equals condition"
+    lte: LocalTime
+    "Greater than condition"
+    gt: LocalTime
+    "Greater than or equals condition"
+    gte: LocalTime
+}
+
+"Expression which can be applied to the Time datatype"
+input TimeExpression {
+    "Equals condition"
+    eq: Time
+    "Not equals condition"
+    ne: Time
+    "Less than condition"
+    lt: Time
+    "Less than or equals condition"
+    lte: Time
+    "Greater than condition"
+    gt: Time
+    "Greater than or equals condition"
+    gte: Time
+}
+
+"Expression which can be applied to the DateTime datatype"
+input DateTimeExpression {
+    "Equals condition"
+    eq: DateTime
+    "Not equals condition"
+    ne: DateTime
+    "Less than condition"
+    lt: DateTime
+    "Less than or equals condition"
+    lte: DateTime
+    "Greater than condition"
+    gt: DateTime
+    "Greater than or equals condition"
+    gte: DateTime
+}
+
+"Expression which can be applied to the DateTime datatype"
+input DateExpression {
+    "Equals condition"
+    eq: Date
+    "Not equals condition"
+    ne: Date
+    "Less than condition"
+    lt: Date
+    "Less than or equals condition"
+    lte: Date
+    "Greater than condition"
+    gt: Date
+    "Greater than or equals condition"
+    gte: Date
+}
+
+"Expression which can be applied to the LocationType datatype"
+input ResourceTypeExpression {
+    "Equals condition"
+    eq: ResourceType
+    "Not equals condition"
+    ne: ResourceType
+    "Condition which checks if the ResourceType is in the provided array"
+    in: [ResourceType!]
+    "Condition which checks if the ResourceType is not in the provided array"
+    notIn: [ResourceType!]
+}

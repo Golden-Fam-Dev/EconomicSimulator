@@ -1,0 +1,21 @@
+{
+  allResources: resources {
+    ...resourceFields
+  }
+  allFreightBefore1900: resources(filter: {resourceType: {eq: FREIGHT}, yearAvailable: {gt: 1899}}) {
+    ...resourceFields
+  }
+  allResourcesLessThan1800: resources(filter: {yearAvailable: {lt: 1800}}) {
+    ...resourceFields
+  }
+}
+
+fragment resourceFields on Resource {
+  resourceId
+  resourceName
+  resourceType
+  yearAvailable
+  medianPrice
+  deliveryTimeSensitivity
+  metraCargo
+}

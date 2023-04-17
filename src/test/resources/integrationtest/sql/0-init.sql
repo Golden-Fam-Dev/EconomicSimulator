@@ -5,7 +5,7 @@ CREATE TABLE economicsimulator.resource
     resource_id               SMALLINT    NOT NULL AUTO_INCREMENT,
     resource_name             VARCHAR(25) NOT NULL,
     resource_type             SMALLINT    NOT NULL,
-    year_available            YEAR        NOT NULL,
+    year_available            SMALLINT    NOT NULL,
     median_price              INTEGER     NOT NULL,
     delivery_time_sensitivity INTEGER     NOT NULL,
     metra_cargo               BOOLEAN     NOT NULL DEFAULT TRUE,
@@ -16,7 +16,7 @@ CREATE TABLE economicsimulator.functional_industry
 (
     industry_id            SMALLINT    NOT NULL AUTO_INCREMENT,
     industry_name          VARCHAR(50) NOT NULL,
-    introduction_year      YEAR        NOT NULL,
+    introduction_year      SMALLINT    NOT NULL,
     industry_cost          INTEGER,
     overhead               INTEGER     NOT NULL,
     minimum_city_size      SMALLINT    NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE economicsimulator.consumption_industry
 (
     resource_id SMALLINT NOT NULL,
     industry_id SMALLINT NOT NULL,
-    until       YEAR,
+    until       SMALLINT,
     PRIMARY KEY (resource_id, industry_id),
     CONSTRAINT consumption_resource FOREIGN KEY (resource_id) REFERENCES resource (resource_id),
     CONSTRAINT consumption_industry FOREIGN KEY (industry_id) REFERENCES functional_industry (industry_id)
@@ -73,7 +73,7 @@ CREATE TABLE economicsimulator.transport
     transport_make_id  SMALLINT    NOT NULL,
     transport_model    VARCHAR(25) NOT NULL,
     transport_name     VARCHAR(25) NOT NULL,
-    year_available     YEAR        NOT NULL,
+    year_available     SMALLINT    NOT NULL,
     cost               INTEGER     NOT NULL,
     annual_maintenance INTEGER     NOT NULL,
     max_load           SMALLINT    NOT NULL,
